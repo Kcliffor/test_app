@@ -5,6 +5,7 @@ import 'package:test_app/start/domain/entities/data.dart';
 import 'package:test_app/start/presentation/bloc/main_bloc.dart';
 import 'package:test_app/start/presentation/bloc/main_event.dart';
 import 'package:test_app/start/presentation/bloc/main_state.dart';
+import 'package:test_app/start/presentation/widgets/reorderable.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
   List<Data> items = [];
-
+  List<Widget> tiles = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,49 +26,63 @@ class _StartPageState extends State<StartPage> {
           buildWhen: (prevState, nextState) {
             if (nextState is GetDataState) {
               items = nextState.data;
+              tiles = _buildTiles(items);
             }
-            return false;
+            return true;
           },
-          builder: (context, state) => Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ReorderableListView(
-              onReorder: (int oldIndex, int newIndex) {
-                setState(() {
-                  if (oldIndex < newIndex) {
-                    newIndex--;
-                  }
-                  final Data item = items.removeAt(oldIndex);
-                  items.insert(newIndex, item);
-                });
-              },
-              children: _buildTiles(),
-            ),
-          ),
+          builder: (context, state) {
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ReorderList(
+                      tiles: tiles,
+                      items: items,
+                    ),
+                  ),
+                  // TextButton(
+                  //   onPressed: () {},
+                  //   child: const Text(
+                  //     'Отправить',
+                  //     style: TextStyle(color: Colors.white),
+                  //   ),
+                  //   style: TextButton.styleFrom(
+                  //     backgroundColor: Colors.blue,
+                  //   ),
+                  // ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
   }
 
-  List<Widget> _buildTiles() {
+  List<Widget> _buildTiles(List<Data> items) {
     List<Widget> list = [];
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
 
     for (var item in items) {
-      if (item.id % 2 == 0) {
+      if (item.orderPrefix == "") {
         list.add(
           Card(
-            key: Key('${item.id}'),
+            key: Key('${item.id - 1}'),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: ListTile(
-              // key: Key('$item'),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              tileColor: item.id.isOdd ? oddItemColor : evenItemColor,
+              trailing: ReorderableDragStartListener(
+                index: item.id - 1,
+                child: const Icon(Icons.drag_handle),
+              ),
+              tileColor: item.orderPrefix == "" ? oddItemColor : evenItemColor,
               title: Text('Упражнение ${item.id}'),
             ),
           ),
@@ -75,7 +90,7 @@ class _StartPageState extends State<StartPage> {
       } else {
         list.add(
           Padding(
-            key: Key('${item.id}'),
+            key: Key('${item.id - 1}'),
             padding: const EdgeInsets.only(
               left: 40.0,
             ),
@@ -87,7 +102,12 @@ class _StartPageState extends State<StartPage> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                tileColor: item.id.isOdd ? oddItemColor : evenItemColor,
+                trailing: ReorderableDragStartListener(
+                  index: item.id - 1,
+                  child: const Icon(Icons.drag_handle),
+                ),
+                tileColor:
+                    item.orderPrefix == "" ? oddItemColor : evenItemColor,
                 title: Text('Упражнение ${item.id}'),
               ),
             ),

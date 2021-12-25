@@ -1,7 +1,9 @@
 import 'package:test_app/start/data/models/data_model.dart';
+import 'package:test_app/start/domain/entities/data.dart';
 
 abstract class MainRemoteDataSource {
   List<DataModel> getData();
+  sendData(List<Data> items);
 }
 
 class MainRemoteDataSourceImpl implements MainRemoteDataSource {
@@ -42,5 +44,10 @@ class MainRemoteDataSourceImpl implements MainRemoteDataSource {
   List<DataModel> getData() {
     var res = data.map((json) => DataModel.fromJson(json)).toList();
     return res;
+  }
+
+  @override
+  sendData(List<Data> items) {
+    // TODO: implement sendData. Отправляем данные на сервер.
   }
 }

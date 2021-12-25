@@ -8,12 +8,11 @@ class MainState extends Equatable {
 
 class EmptyState extends MainState {}
 
-
 class GetDataState extends MainState {
   final List<Data> data;
 
   GetDataState({required this.data});
-  
+
   @override
   List<Object?> get props => [data];
 }

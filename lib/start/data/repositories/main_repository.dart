@@ -8,8 +8,12 @@ class MainRepositoryImpl implements MainRepository {
   MainRepositoryImpl({required this.remoteSource});
 
   @override
-  List<Data> getData()  {
+  List<Data> getData() {
     return remoteSource.getData();
   }
-  
+
+  @override
+  sendData(List<Data> items) {
+    return remoteSource.sendData(items);
+  }
 }
