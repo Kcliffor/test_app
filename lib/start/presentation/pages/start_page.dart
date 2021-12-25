@@ -41,16 +41,6 @@ class _StartPageState extends State<StartPage> {
                       items: items,
                     ),
                   ),
-                  // TextButton(
-                  //   onPressed: () {},
-                  //   child: const Text(
-                  //     'Отправить',
-                  //     style: TextStyle(color: Colors.white),
-                  //   ),
-                  //   style: TextButton.styleFrom(
-                  //     backgroundColor: Colors.blue,
-                  //   ),
-                  // ),
                 ],
               ),
             );
