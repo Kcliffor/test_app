@@ -15,10 +15,10 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
-  List<Data> items = [];
-  List<Widget> tiles = [];
   @override
   Widget build(BuildContext context) {
+    List<Data> items = [];
+    List<Widget> tiles = [];
     return Scaffold(
       body: BlocProvider<MainBloc>(
         create: (_) => appInstance<MainBloc>()..add(GetDataEvent()),
@@ -53,8 +53,8 @@ class _StartPageState extends State<StartPage> {
   List<Widget> _buildTiles(List<Data> items) {
     List<Widget> list = [];
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
+    final Color itemColor = colorScheme.primary.withOpacity(0.05);
+    final Color underItemColor = colorScheme.primary.withOpacity(0.15);
 
     for (var item in items) {
       if (item.orderPrefix == "") {
@@ -72,7 +72,7 @@ class _StartPageState extends State<StartPage> {
                 index: item.id - 1,
                 child: const Icon(Icons.drag_handle),
               ),
-              tileColor: item.orderPrefix == "" ? oddItemColor : evenItemColor,
+              tileColor: item.orderPrefix == "" ? itemColor : underItemColor,
               title: Text('Упражнение ${item.id}'),
             ),
           ),
@@ -96,8 +96,7 @@ class _StartPageState extends State<StartPage> {
                   index: item.id - 1,
                   child: const Icon(Icons.drag_handle),
                 ),
-                tileColor:
-                    item.orderPrefix == "" ? oddItemColor : evenItemColor,
+                tileColor: item.orderPrefix == "" ? itemColor : underItemColor,
                 title: Text('Упражнение ${item.id}'),
               ),
             ),
