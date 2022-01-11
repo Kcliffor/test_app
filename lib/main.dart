@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/start/presentation/pages/start_page.dart';
 
+import 'first/presentation/pages/first_page.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (_) => const StartPage(),
+        '/': (_) => const FirstPage(),
       },
     );
   }

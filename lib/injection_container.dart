@@ -1,17 +1,18 @@
 import 'package:get_it/get_it.dart';
-import 'package:test_app/start/data/data_sources/main_remote_data_source.dart';
-import 'package:test_app/start/data/repositories/main_repository.dart';
-import 'package:test_app/start/domain/repositories/main_repository.dart';
-import 'package:test_app/start/domain/usecases/get_data.dart';
-import 'package:test_app/start/domain/usecases/send_data.dart';
-import 'package:test_app/start/presentation/bloc/main_bloc.dart';
+
+import 'first/data/data_sources/first_remote_data_source.dart';
+import 'first/data/repositories/first_repository.dart';
+import 'first/domain/repositories/first_repository.dart';
+import 'first/domain/usecases/get_data.dart';
+import 'first/domain/usecases/send_data.dart';
+import 'first/presentation/bloc/first_bloc.dart';
 
 final appInstance = GetIt.instance;
 
 Future<void> init() async {
   // Bloc
   appInstance.registerFactory(
-    () => MainBloc(
+    () => FirstBloc(
       getData: appInstance(),
       sendData: appInstance(),
     ),
@@ -31,13 +32,13 @@ Future<void> init() async {
   );
 
   // Repositories
-  appInstance.registerLazySingleton<MainRepository>(
-    () => MainRepositoryImpl(
+  appInstance.registerLazySingleton<FirstRepository>(
+    () => FirstRepositoryImpl(
       remoteSource: appInstance(),
     ),
   );
   // Data Sources
-  appInstance.registerLazySingleton<MainRemoteDataSource>(
-    () => MainRemoteDataSourceImpl(),
+  appInstance.registerLazySingleton<FirstRemoteDataSource>(
+    () => FirstRemoteDataSourceImpl(),
   );
 }
