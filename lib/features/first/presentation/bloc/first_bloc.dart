@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app/first/domain/usecases/get_data.dart';
-import 'package:test_app/first/domain/usecases/send_data.dart';
+import 'package:test_app/features/first/domain/usecases/get_data.dart';
+import 'package:test_app/features/first/domain/usecases/send_data.dart';
 
 import 'first_event.dart';
 import 'first_state.dart';

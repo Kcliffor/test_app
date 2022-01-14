@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:test_app/first/data/models/data_model.dart';
-import 'package:test_app/first/data/models/result_model.dart';
-import 'package:test_app/first/domain/entities/user_data.dart';
+import 'package:test_app/features/first/data/models/data_model.dart';
+import 'package:test_app/features/first/data/models/result_model.dart';
+import 'package:test_app/features/first/domain/entities/user_data.dart';
 
 abstract class FirstRemoteDataSource {
   Future<List<UserDataModel>> getData();

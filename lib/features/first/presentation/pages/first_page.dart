@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_app/first/domain/entities/user_data.dart';
-import 'package:test_app/first/presentation/bloc/first_bloc.dart';
-import 'package:test_app/first/presentation/bloc/first_event.dart';
-import 'package:test_app/first/presentation/bloc/first_state.dart';
+import 'package:test_app/features/first/domain/entities/user_data.dart';
+import 'package:test_app/features/first/presentation/bloc/first_bloc.dart';
+import 'package:test_app/features/first/presentation/bloc/first_event.dart';
+import 'package:test_app/features/first/presentation/bloc/first_state.dart';
 
-import '../../../injection_container.dart';
+import '../../../../injection_container.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -15,9 +15,10 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  List<UserData> userData = [];
+
   @override
   Widget build(BuildContext context) {
-    List<UserData> userData = [];
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -31,7 +32,7 @@ class _FirstPageState extends State<FirstPage> {
             if (nextState is GetDataState) {
               userData = nextState.data;
             }
-            return true;
+            return nextState is GetDataState;
           },
           builder: (context, state) {
             return ListView.builder(

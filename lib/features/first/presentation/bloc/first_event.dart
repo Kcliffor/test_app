@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:test_app/first/domain/entities/user_data.dart';
+import 'package:test_app/features/first/domain/entities/user_data.dart';
 
 class FirstEvent extends Equatable {
   @override
