@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:test_app/features/first/domain/entities/user_data.dart';
+import 'package:test_app/features/users_list/domain/entities/user_data.dart';
 
 class FirstState extends Equatable {
   @override
@@ -15,4 +15,13 @@ class GetDataState extends FirstState {
 
   @override
   List<Object?> get props => [data];
+}
+
+class UserInfoState extends FirstState {
+  final int id;
+
+  UserInfoState({required this.id});
+
+  @override
+  List<Object?> get props => [id];
 }

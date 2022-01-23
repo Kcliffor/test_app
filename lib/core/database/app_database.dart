@@ -48,4 +48,10 @@ class AppDatabase extends _$AppDatabase {
     var listUsers = await select(users).get();
     return listUsers.map((user) => UserDBModel.fromModel(user)).toList();
   }
+
+  Future<UserDBModel?> getUserById(int id) async {
+    var user = await (select(users)..where((tbl) => tbl.id.equals(id)))
+        .getSingleOrNull();
+    return user != null ? UserDBModel.fromModel(user) : null;
+  }
 }

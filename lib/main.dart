@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/first/presentation/pages/first_page.dart';
+import 'features/users_list/presentation/pages/users_list.dart';
 import 'injection_container.dart' as di;
 
 void main() async {

@@ -1,7 +1,7 @@
 import 'package:moor_flutter/moor_flutter.dart';
 import 'package:test_app/core/database/app_database.dart';
 import 'package:test_app/core/database/data_models/user_db_model.dart';
-import 'package:test_app/features/first/data/models/data_model.dart';
+import 'package:test_app/features/users_list/data/models/data_model.dart';
 
 abstract class FirstLocalDataSource {
   Future<void> saveUsers(UserDataModel userDataModel);

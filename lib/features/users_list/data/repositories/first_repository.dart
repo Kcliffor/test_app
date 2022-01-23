@@ -1,7 +1,7 @@
-import 'package:test_app/features/first/data/data_sources/first_local_data_source.dart';
-import 'package:test_app/features/first/data/data_sources/first_remote_data_source.dart';
-import 'package:test_app/features/first/domain/entities/user_data.dart';
-import 'package:test_app/features/first/domain/repositories/first_repository.dart';
+import 'package:test_app/features/users_list/data/data_sources/first_local_data_source.dart';
+import 'package:test_app/features/users_list/data/data_sources/first_remote_data_source.dart';
+import 'package:test_app/features/users_list/domain/entities/user_data.dart';
+import 'package:test_app/features/users_list/domain/repositories/first_repository.dart';
 
 class FirstRepositoryImpl implements FirstRepository {
   final FirstRemoteDataSource remoteSource;
